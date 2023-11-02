@@ -29,6 +29,7 @@ public class UserController {
 	@GetMapping
 	public List<UserDTO> listUsers() {
 		List<User> users = userRepository.findAll();
+	System.out.println("users:" + users);
 		return UserDTO.convert(users);
 	}
 	
