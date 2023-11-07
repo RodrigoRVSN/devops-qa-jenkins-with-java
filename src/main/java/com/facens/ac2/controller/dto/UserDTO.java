@@ -9,12 +9,13 @@ import com.facens.ac2.model.User;
 public class UserDTO {
 	private Long id;
 	private String name;
-	
+	private String email;
 	
 	public UserDTO(User user) {
 		super();
 		this.id = user.getId();
 		this.name = user.getName();
+		this.email = user.getEmail();
 	}
 
 	public Long getId() {
@@ -23,6 +24,11 @@ public class UserDTO {
 
 	public String getName() {
 		return name;
+	}
+	
+
+	public String getEmail() {
+		return email;
 	}
 	
 
