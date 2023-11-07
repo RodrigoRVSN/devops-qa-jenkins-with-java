@@ -27,8 +27,8 @@ public class AlunoController {
 
   @Autowired
   public AlunoController(AlunoRepository repository, CursoRepository cursoRepository) {
-      this.repository = repository;
-      this.cursoRepository = cursoRepository;
+    this.repository = repository;
+    this.cursoRepository = cursoRepository;
   }
 
   @GetMapping
@@ -51,9 +51,8 @@ public class AlunoController {
 
   @PutMapping("/{id}")
   public Aluno updateAluno(
-    @PathVariable Long id,
-    @RequestBody Aluno updatedAluno
-  ) {
+      @PathVariable Long id,
+      @RequestBody Aluno updatedAluno) {
     Aluno aluno = repository.findById(id).orElse(null);
     if (aluno != null) {
       aluno.setName(updatedAluno.getName());
@@ -64,10 +63,8 @@ public class AlunoController {
 
   @PostMapping("/{aluno_id}/adquire-curso/{curso_id}")
   public Aluno alunoAdquireCurso(
-    @PathVariable Long aluno_id,
-    @PathVariable Long curso_id
-    // @RequestBody Aluno updatedAluno
-  ) {
+      @PathVariable Long aluno_id,
+      @PathVariable Long curso_id) {
     Aluno aluno = repository.findById(aluno_id).orElse(null);
     Curso curso = this.cursoRepository.findById(curso_id).orElse(null);
 
