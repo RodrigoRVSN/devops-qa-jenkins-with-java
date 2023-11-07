@@ -27,3 +27,7 @@ mvn spring-boot:run
 ```
 
 ## DELETE /alunos/{id}
+
+## DTO
+
+![DTO](./img/DTO.excalidraw.svg)

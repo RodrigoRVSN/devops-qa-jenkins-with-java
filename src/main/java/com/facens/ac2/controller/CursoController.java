@@ -1,8 +1,8 @@
 package com.facens.ac2.controller;
 
-import com.facens.ac2.controller.dto.AlunoDTO;
-import com.facens.ac2.model.Aluno;
-import com.facens.ac2.repository.AlunoRepository;
+import com.facens.ac2.controller.dto.CursoDTO;
+import com.facens.ac2.model.Curso;
+import com.facens.ac2.repository.CursoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,45 +17,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/alunos")
-public class AlunoController {
+@RequestMapping("/cursos")
+public class CursoController {
 
   @Autowired
-  private AlunoRepository repository;
+  private CursoRepository repository;
 
   @GetMapping
-  public List<AlunoDTO> lista() {
-    List<Aluno> dto = repository.findAll();
-    return AlunoDTO.convert(dto);
+  public List<CursoDTO> lista() {
+    List<Curso> dto = repository.findAll();
+    return CursoDTO.convert(dto);
   }
 
   @GetMapping("/{id}")
-  public Aluno getAlunoById(@PathVariable Long id) {
+  public Curso getCursoById(@PathVariable Long id) {
     return repository.findById(id).orElse(null);
   }
 
   @PostMapping
-  public AlunoDTO createAluno(@RequestBody Aluno aluno) {
-    repository.save(aluno);
-    AlunoDTO dto = new AlunoDTO(aluno);
+  public CursoDTO createCurso(@RequestBody Curso curso) {
+    repository.save(curso);
+    CursoDTO dto = new CursoDTO(curso);
     return dto;
   }
 
   @PutMapping("/{id}")
-  public Aluno updateAluno(
+  public Curso updateCurso(
     @PathVariable Long id,
-    @RequestBody Aluno updatedAluno
+    @RequestBody Curso updatedCurso
   ) {
-    Aluno aluno = repository.findById(id).orElse(null);
-    if (aluno != null) {
-      aluno.setName(updatedAluno.getName());
-      return repository.save(aluno);
+    Curso curso = repository.findById(id).orElse(null);
+    if (curso != null) {
+      curso.setName(updatedCurso.getName());
+      return repository.save(curso);
     }
     return null;
   }
 
   @DeleteMapping("/{id}")
-  public void deleteAluno(@PathVariable Long id) {
+  public void deleteCurso(@PathVariable Long id) {
     repository.deleteById(id);
   }
 }
