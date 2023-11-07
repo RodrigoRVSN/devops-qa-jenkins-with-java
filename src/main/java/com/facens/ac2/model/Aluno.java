@@ -16,8 +16,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.facens.ac2.repository.CursoRepository;
-
 @Getter
 @Setter
 @NoArgsConstructor
