@@ -1,6 +1,8 @@
 package com.facens.ac2;
 
+import com.facens.ac2.model.Aluno;
 import com.facens.ac2.model.Curso;
+import com.facens.ac2.repository.AlunoRepository;
 import com.facens.ac2.repository.CursoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
