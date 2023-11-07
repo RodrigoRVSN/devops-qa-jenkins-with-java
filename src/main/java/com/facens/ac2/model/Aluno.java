@@ -16,6 +16,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.facens.ac2.repository.CursoRepository;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,6 +34,7 @@ public class Aluno {
   private String email;
   private String password;
   private String passwordHash;
+  private Plano plano = Plano.FREE;
 
   @ManyToMany
   @JoinTable(
@@ -47,9 +50,29 @@ public class Aluno {
     setPasswordHash(password);
   }
 
-  public void setPasswordHash(String password) {
+  private void setPasswordHash(String password) {
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    this.passwordHash = passwordEncoder.encode(password);
+    passwordHash = passwordEncoder.encode(password);
   }
+
+  public void adquireCurso(Curso curso) {
+    cursos.add(curso);
+  }
+
+  public void verificaPlano() {
+    if (this.getCursos().size() > 11) {
+      plano = Plano.PREMIUM;
+    } else {
+      plano = Plano.FREE;
+    }
+  }
+
+  public void showCursos() {
+    for (Curso curso : cursos) {
+      curso.show();
+      System.out.println("");
+    }
+  }
+
 }
