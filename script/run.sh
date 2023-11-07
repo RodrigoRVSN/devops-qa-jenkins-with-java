@@ -1,1 +1,1 @@
-mvn spring-boot:run -e -X
+mvn spring-boot:run # -e -X

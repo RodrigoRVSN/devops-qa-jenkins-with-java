@@ -7,11 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "cursos")
 public class Curso {
@@ -25,8 +27,6 @@ public class Curso {
   private double nota02 = 0.0;
   private double notaFinal = 0.0;
   private double media = 0.0;
-
-  public Curso() {}
 
   public Curso(String name) {
     this.name = name;

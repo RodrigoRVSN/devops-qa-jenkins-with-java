@@ -1,6 +1,8 @@
 package com.facens.ac2;
 
+import com.facens.ac2.model.Aluno;
 import com.facens.ac2.model.Curso;
+import com.facens.ac2.repository.AlunoRepository;
 import com.facens.ac2.repository.CursoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +17,7 @@ public class Ac2Application {
   }
 
   @Bean
-  public CommandLineRunner initData(CursoRepository cursoRepository) {
+  public CommandLineRunner initCursos(CursoRepository cursoRepository) {
     return args -> {
       Curso portugues = new Curso("Português");
       Curso matematica = new Curso("Matemática");
@@ -38,6 +40,23 @@ public class Ac2Application {
       cursoRepository.save(filosofia);
       cursoRepository.save(artes);
       cursoRepository.save(desenvolvimentoPessoal);
+    };
+  }
+
+  @Bean
+  public CommandLineRunner initAlunos(AlunoRepository alunoRepository) {
+    return args -> {
+      Aluno test01 = new Aluno("Test 01", "test01@mail.com", "senhaForte01");
+      Aluno test02 = new Aluno("Test 02", "test02@mail.com", "senhaForte02");
+      Aluno test03 = new Aluno("Test 03", "test03@mail.com", "senhaForte03");
+      Aluno test04 = new Aluno("Test 04", "test04@mail.com", "senhaForte04");
+      Aluno test05 = new Aluno("Test 05", "test05@mail.com", "senhaForte05");
+
+      alunoRepository.save(test01);
+      alunoRepository.save(test02);
+      alunoRepository.save(test03);
+      alunoRepository.save(test04);
+      alunoRepository.save(test05);
     };
   }
 }
