@@ -2,7 +2,9 @@ package com.facens.ac2.controller;
 
 import com.facens.ac2.controller.dto.AlunoDTO;
 import com.facens.ac2.model.Aluno;
+import com.facens.ac2.model.Curso;
 import com.facens.ac2.repository.AlunoRepository;
+import com.facens.ac2.repository.CursoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,8 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/alunos")
 public class AlunoController {
 
+  private final AlunoRepository repository;
+  private final CursoRepository cursoRepository;
+
   @Autowired
-  private AlunoRepository repository;
+  public AlunoController(AlunoRepository repository, CursoRepository cursoRepository) {
+      this.repository = repository;
+      this.cursoRepository = cursoRepository;
+  }
 
   @GetMapping
   public List<AlunoDTO> lista() {
@@ -49,6 +57,24 @@ public class AlunoController {
     Aluno aluno = repository.findById(id).orElse(null);
     if (aluno != null) {
       aluno.setName(updatedAluno.getName());
+      return repository.save(aluno);
+    }
+    return null;
+  }
+
+  @PostMapping("/{aluno_id}/adquire-curso/{curso_id}")
+  public Aluno alunoAdquireCurso(
+    @PathVariable Long aluno_id,
+    @PathVariable Long curso_id
+    // @RequestBody Aluno updatedAluno
+  ) {
+    Aluno aluno = repository.findById(aluno_id).orElse(null);
+    Curso curso = this.cursoRepository.findById(curso_id).orElse(null);
+
+    System.out.println(aluno + "\n\n" + curso);
+
+    if (aluno != null && curso != null) {
+      aluno.adquireCurso(curso);
       return repository.save(aluno);
     }
     return null;

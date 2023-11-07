@@ -14,13 +14,13 @@ public class AlunoDTO {
 
   private Long id;
   private String name;
-  private String username;
+  private String email;
 
   public AlunoDTO(Aluno aluno) {
     super();
     this.id = aluno.getId();
     this.name = aluno.getName();
-    this.username = aluno.getUsername();
+    this.email = aluno.getEmail();
   }
 
   public static List<AlunoDTO> convert(List<Aluno> alunos) {

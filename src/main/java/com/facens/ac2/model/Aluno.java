@@ -12,11 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.facens.ac2.repository.CursoRepository;
+
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "alunos")
@@ -27,8 +31,10 @@ public class Aluno {
   private Long id;
 
   private String name;
-  private String username;
+  private String email;
+  private String password;
   private String passwordHash;
+  private Plano plano = Plano.FREE;
 
   @ManyToMany
   @JoinTable(
@@ -38,20 +44,35 @@ public class Aluno {
   )
   private List<Curso> cursos = new ArrayList<>();
 
-  public Aluno() {}
-
-  public Aluno(String name, String username, String password) {
+  public Aluno(String name, String email, String password) {
     this.name = name;
-    this.username = username;
-    this.passwordHash = setPasswordHash(password);
+    this.email = email;
+    setPasswordHash(password);
   }
 
-  // ...
-
-  public String setPasswordHash(String password) {
+  private void setPasswordHash(String password) {
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    this.passwordHash = passwordEncoder.encode(password);
-    return passwordHash;
+    passwordHash = passwordEncoder.encode(password);
   }
+
+  public void adquireCurso(Curso curso) {
+    cursos.add(curso);
+  }
+
+  public void verificaPlano() {
+    if (this.getCursos().size() > 11) {
+      plano = Plano.PREMIUM;
+    } else {
+      plano = Plano.FREE;
+    }
+  }
+
+  public void showCursos() {
+    for (Curso curso : cursos) {
+      curso.show();
+      System.out.println("");
+    }
+  }
+
 }
