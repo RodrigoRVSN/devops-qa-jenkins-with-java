@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Curso {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   private String name;
@@ -28,9 +28,16 @@ public class Curso {
 
   public Curso() {}
 
-  public Curso(String name) {}
+  public Curso(String name) {
+    this.name = name;
+  }
 
-  public double getMedia() {
+  public boolean estaAprovado() {
+    double media = calcularMedia();
+    return media >= 7.5;
+  }
+
+  public double calcularMedia() {
     this.media = (this.nota01 + this.nota02 + this.notaFinal) / 3;
     return this.media;
   }
