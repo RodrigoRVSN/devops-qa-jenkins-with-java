@@ -52,8 +52,6 @@ public class Ac2Application {
       Aluno test04 = new Aluno("Test 04", "test04@mail.com", "senhaForte04");
       Aluno test05 = new Aluno("Test 05", "test05@mail.com", "senhaForte05");
 
-      // test01.adquireCurso(new Curso("test"));
-
       alunoRepository.save(test01);
       alunoRepository.save(test02);
       alunoRepository.save(test03);
