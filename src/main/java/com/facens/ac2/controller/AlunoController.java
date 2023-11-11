@@ -26,7 +26,10 @@ public class AlunoController {
   private final CursoRepository cursoRepository;
 
   @Autowired
-  public AlunoController(AlunoRepository repository, CursoRepository cursoRepository) {
+  public AlunoController(
+    AlunoRepository repository,
+    CursoRepository cursoRepository
+  ) {
     this.repository = repository;
     this.cursoRepository = cursoRepository;
   }
@@ -63,8 +66,9 @@ public class AlunoController {
 
   @PostMapping("/{aluno_id}/adquire-curso/{curso_id}")
   public Aluno alunoAdquireCurso(
-      @PathVariable Long aluno_id,
-      @PathVariable Long curso_id) {
+    @PathVariable Long aluno_id,
+    @PathVariable Long curso_id
+  ) {
     Aluno aluno = repository.findById(aluno_id).orElse(null);
     Curso curso = this.cursoRepository.findById(curso_id).orElse(null);
 

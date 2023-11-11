@@ -1,36 +1,58 @@
-package com.facens.ac2.model;
+// package com.facens.ac2.model;
 
-import jakarta.persistence.*;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "users")
-public class User {
+// @Entity
+// @Table(name = "users") 
+// public class User {
+//     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+//     private String name;
+//     private String email;
+//     private String password;
+    
+//     public User() {}
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+//     public User(String name, String email, String password) {
+//         super();
+//         this.name = name;
+//         this.setEmail(email);
+//         this.setPassword(password);
+//     }
 
-  private String name;
+//     public Long getId() {
+//         return id;
+//     }
 
-  public User() {}
+//     public void setId(Long id) {
+//         this.id = id;
+//     }
 
-  public User(String name) {
-    this.name = name;
-  }
+//     public String getName() {
+//         return name;
+//     }
 
-  public Long getId() {
-    return id;
-  }
+//     public void setName(String name) {
+//         this.name = name;
+//     }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+//     public String getPassword() {
+//         return password;
+//     }
 
-  public String getName() {
-    return name;
-  }
+//     public void setPassword(String password) {
+//         this.password = password;
+//     }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-}
+//     public String getEmail() {
+//         return email;
+//     }
+
+//     public void setEmail(String email) {
+//         this.email = email;
+//     }
+// }
