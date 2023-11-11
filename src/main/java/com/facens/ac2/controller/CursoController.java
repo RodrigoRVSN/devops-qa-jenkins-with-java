@@ -43,9 +43,8 @@ public class CursoController {
 
   @PutMapping("/{id}")
   public Curso updateCurso(
-    @PathVariable Long id,
-    @RequestBody Curso updatedCurso
-  ) {
+      @PathVariable Long id,
+      @RequestBody Curso updatedCurso) {
     Curso curso = repository.findById(id).orElse(null);
     if (curso != null) {
       curso.setName(updatedCurso.getName());

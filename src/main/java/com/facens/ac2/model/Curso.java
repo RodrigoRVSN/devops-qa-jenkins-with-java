@@ -39,20 +39,15 @@ public class Curso {
       return false;
     } else {
       media = (nota01 + nota02) / 2;
-      // System.out.println("Media: " + media);
       if (media < 30) {
-        // System.out.println("Reprovado: Media < 30!" + media);
         return false;
       } else {
         if (media >= 70) {
-          // System.out.println("Aprovado: Media >= 70!");
           return true;
         } else {
           if ((media + notaFinal) / 2 >= 50) {
-            // System.out.println("Aprovado: Media2 >= 50!");
             return true;
           } else {
-            // System.out.println("Reprovado: Media2 < 50!");
             return false;
           }
         }
