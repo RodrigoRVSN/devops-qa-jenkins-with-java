@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    # Todo: change to AC2 image from docker hub
+    build: .
+    environment:
+      DB_HOST: database
+    ports:
+      - "9090:9090"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16.0-alpine3.18
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+
+volumes:
+  db-volume:
