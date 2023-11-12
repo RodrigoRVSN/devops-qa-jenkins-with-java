@@ -12,6 +12,7 @@ services:
   api:
     image: rodrigorvsn/ac2:latest
     environment:
+      SPRING_PROFILES_ACTIVE: cd
       DB_HOST: database
     ports:
       - "9090:9090"
