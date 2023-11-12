@@ -1,3 +1,4 @@
+// TODO: fix this pipeline
 node {
     stage('Checkout') {
         // Configurar SCM para monitorar o repositório
