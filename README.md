@@ -1,14 +1,14 @@
 # Spring-boot api + java + maven
 
-## Run
+- Run
 
 ```sh
 mvn spring-boot:run
 ```
 
-## GET    /alunos
+- GET    /alunos
 
-## POST   /alunos
+- POST   /alunos
 
 ```json
 // body
@@ -17,7 +17,7 @@ mvn spring-boot:run
 }
 ```
 
-## PUT    /alunos/{id}
+- PUT    /alunos/{id}
 
 ```json
 // body
@@ -26,7 +26,7 @@ mvn spring-boot:run
 }
 ```
 
-## DELETE /alunos/{id}
+- DELETE /alunos/{id}
 
 ## DTO
 
