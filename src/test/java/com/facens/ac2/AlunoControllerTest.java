@@ -88,7 +88,7 @@ public class AlunoControllerTest {
   //         .content(objectMapper.writeValueAsString(aluno))
   //     )
   //     .andDo(MockMvcResultHandlers.print())
-  //     .andExpect(MockMvcResultMatchers.status().isOk())
+  //     .andExpect(MockMvcResultMatchers.status().isOk())  
   //     .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L))
   //     .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("John Doe"));
 
