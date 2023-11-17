@@ -4,23 +4,19 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import com.facens.ac2.controller.AlunoController;
-import com.facens.ac2.controller.dto.AlunoDTO;
 import com.facens.ac2.model.Aluno;
 import com.facens.ac2.model.Curso;
 import com.facens.ac2.repository.AlunoRepository;
 import com.facens.ac2.repository.CursoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -37,13 +33,11 @@ public class AlunoControllerTest {
 
   private MockMvc mockMvc;
 
-  private ObjectMapper objectMapper;
-
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
     mockMvc = MockMvcBuilders.standaloneSetup(alunoController).build();
-    objectMapper = new ObjectMapper();
+    new ObjectMapper();
   }
 
   @Test
