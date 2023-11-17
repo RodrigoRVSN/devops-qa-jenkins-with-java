@@ -41,7 +41,7 @@ public class Aluno {
     inverseJoinColumns = @JoinColumn(name = "curso_id")
   )
   private List<Curso> cursos = new ArrayList<>();
-
+  
   public Aluno(String name, String email, String password) {
     this.name = name;
     this.email = email;
