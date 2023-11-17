@@ -47,15 +47,23 @@ public class AlunoController {
 
   @PostMapping
   public AlunoDTO createAluno(@RequestBody Aluno aluno) {
-    repository.save(aluno);
-    AlunoDTO dto = new AlunoDTO(aluno);
-    return dto;
+    try {
+      repository.save(aluno);
+      AlunoDTO dto = new AlunoDTO(aluno);
+      return dto;
+    } catch (Exception e) {
+      // Adicione logs para investigar o motivo do erro
+      // log.error("Erro ao criar aluno", e);
+      System.out.println("\n\n\nErro ao criar aluno" + e);
+      throw e;
+    }
   }
 
   @PutMapping("/{id}")
   public Aluno updateAluno(
-      @PathVariable Long id,
-      @RequestBody Aluno updatedAluno) {
+    @PathVariable Long id,
+    @RequestBody Aluno updatedAluno
+  ) {
     Aluno aluno = repository.findById(id).orElse(null);
     if (aluno != null) {
       aluno.setName(updatedAluno.getName());
