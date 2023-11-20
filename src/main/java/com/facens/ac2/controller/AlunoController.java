@@ -25,7 +25,6 @@ public class AlunoController {
   private final AlunoRepository repository;
   private final CursoRepository cursoRepository;
 
-  @Autowired
   public AlunoController(
     AlunoRepository repository,
     CursoRepository cursoRepository
