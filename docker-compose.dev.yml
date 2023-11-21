@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  api:
+    image: charles0liveira/ac2-dev:latest
+    ports:
+      - "9090:9090"

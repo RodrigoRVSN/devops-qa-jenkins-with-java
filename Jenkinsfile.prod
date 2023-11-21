@@ -1,23 +1,28 @@
-// TODO: fix this pipeline parameters to upload dockerhub image to azure
-
 pipeline {
-    agent any
-
-    environment {
-        DOCKER_IMAGE = 'rodrigorvsn/ac2'
-        DOCKER_TAG = 'latest'
-        AZURE_RESOURCE_GROUP = 'your-resource-group'
-        AZURE_ACI_NAME = 'your-aci-name'
+  // environment {
+  //   dockerimage = "${image}"
+  // }
+  agent any
+  
+  stages {
+    stage('Prune Docker data') {
+      steps {
+        sh 'docker system prune -a --volumes -f'
+      }
     }
-
-    stages {
-        stage('Deploy to Azure') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'azure', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD')]) {
-                    sh 'az login --service-principal -u ${AZURE_USERNAME} -p ${AZURE_PASSWORD} --tenant your-tenant-id'
-                    sh 'az container create --resource-group ${AZURE_RESOURCE_GROUP} --name ${AZURE_ACI_NAME} --image ${DOCKER_IMAGE}:${DOCKER_TAG} --dns-name-label your-dns-name-label --ports 80'
-                }
-            }
-        }
+  
+    stage('Start container') {
+      steps {
+        sh 'docker-compose -f ./docker-compose.prod.yml up -d --wait'
+        sh 'docker-compose -f ./docker-compose.prod.yml ps'
+      }
     }
+  
+    stage('Run tests against the container') {
+      steps {
+        sh 'curl http://localhost:9092/alunos'
+      }
+    }
+  }
+  
 }
