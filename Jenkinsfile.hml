@@ -1,0 +1,46 @@
+pipeline {
+  agent any
+  
+  stages {
+    stage('Prune Docker data') {
+      steps {
+        script {
+          if (isUnix()) {
+            sh 'docker system prune -a --volumes -f'
+          } else {
+            bat 'docker system prune -a --volumes -f'
+          }
+        }
+      }
+    }
+  
+    stage('Start container') {
+      steps {
+        script {
+          if (isUnix()) {
+            sh 'docker-compose -f ./docker-compose.hml.yml up -d --wait'
+            sh 'docker-compose -f ./docker-compose.hml.yml ps'
+          } else {
+            bat 'docker-compose -f ./docker-compose.hml.yml up -d --wait'
+            bat 'docker-compose -f ./docker-compose.hml.yml ps'
+          }
+        }
+      }
+    }
+  
+    stage('Run tests against the container') {
+      steps {
+        sleep 5
+        script {
+          if (isUnix()) {
+            sh 'curl http://localhost:9091'
+          } else {
+            bat 'curl http://localhost:9091'
+          }
+        }
+      }
+    }
+  
+    // other stages...
+  }
+}

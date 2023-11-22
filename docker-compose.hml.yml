@@ -10,7 +10,7 @@ services:
       - db-volume:/var/lib/postgresql/data
 
   api:
-    image: charles0liveira/ac2-dev:latest
+    image: rodrigorvsn/ac2:latest
     environment:
       SPRING_PROFILES_ACTIVE: cd
       DB_HOST: database
